@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Home</a>
+              <a class="nav-link active" href="index.html">Home</a>
             </li>
 
             <li class="nav-item">
@@ -50,7 +50,9 @@
       </div>
     </nav>
     <div class="container mt-2">
-      <p><a href="home.html">Home</a>/About</p>
+      <p>
+        <a href="index.html">Home</a>
+        /About</p>
 
       <div class="row">
         <h2>About Our InternShip Program</h2>
@@ -70,16 +72,123 @@
           </div>
         </div>
         <div class="col-5">
-            <div class="border p-3 rounded">
-                <h6>Hands-on Learning</h6>
-          <p>Practical approach with real UI layouts and components.</p>
-        
-            </div>
+          <div class="border p-3 rounded">
+            <h6>Hands-on Learning</h6>
+            <p>Practical approach with real UI layouts and components.</p>
           </div>
+        </div>
       </div>
     </div>
 
-    <footer class="bg-dark text-white">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-8 mt-3">
+          <h3>What Interns Will Practice</h3>
+          <table class="table table-bordered">
+            <tr>
+              <th class="bg-dark text-white">Topic</th>
+              <th class="bg-dark text-white">Status</th>
+            </tr>
+
+            <tr>
+              <td>Bootstrap Grid</td>
+              <td ><span class="badge bg-success text-light text-center mt-2">Completed</span></td>
+            </tr>
+
+            <tr>
+              <td>Components</td>
+              <td ><span class="badge bg-warning text-light text-center mt-2">
+                  In Progress
+            </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Responsive Layout</td>
+              <td ><span class="badge bg-info text-light text-center mt-2">Uploading</span></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="col-4">
+          <h4>Learning progress</h4>
+          <p>HTML</p>
+          <div class="progress mb-3">
+            <div class="progress-bar bg-success" style="width: 80%">80%</div>
+          </div>
+          <p>BootStrap</p>
+          <div class="progress mb-3">
+            <div class="progress-bar bg-info" style="width: 60%">60%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-3">
+      <ul class="nav nav-pills mb-3">
+        <li class="nav-item">
+          <button
+            class="nav-link active"
+            data-bs-toggle="pill"
+            data-bs-target="#mission"
+          >
+            Mission
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link"
+            data-bs-toggle="pill"
+            data-bs-target="#vision"
+          >
+            Vision
+          </button>
+        </li>
+      </ul>
+
+      <div>
+        <div class="tab-content">
+          <div class="tab-pane show active" id="mission">
+            Our mission is to train interns with practical frontend skills.
+          </div>
+
+          <div class="tab-pane" id="vision">
+            To build confident, industry-ready frontend developers.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <h4>Frequently Asked Questions</h4>
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              Do we write custom CSS?
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              No . We use only Bootstrap utility classes.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5">
       <div class="container p-2">
         <div class="row">
           <div class="col-4">
