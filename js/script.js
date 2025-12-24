@@ -19,18 +19,41 @@
 // else
 //     console.log("kelambu");
 
-let a = Number(prompt("Enter a number to reverse:"));
-let rev = 0;
-while(a>0)
-{
-    rev = rev*10+(a%10);
-    a = Math.floor(a/10);
-}
-console.log(rev);
+// let a = Number(prompt("Enter a number to reverse:"));
+// let rev = 0;
+// while(a>0)
+// {
+//     rev = rev*10+(a%10);
+//     a = Math.floor(a/10);
+// }
+// console.log(rev);
 
-let i = 1;
-while(i<20)
+// let i = 1;
+// while(i<20)
+// {
+//     console.log(i);
+//     i+=2;
+// }
+
+
+setTimeout(()=>
 {
-    console.log(i);
-    i+=2;
-}
+    console.log("set timeout");
+
+},5000)
+
+setInterval(()=>{
+    console.log("this is setInterval")
+},2000000)
+
+a = [1,2,3,4,5,6,7,8,9.10];
+b = a.map((val)=>val+5);
+console.log(a);
+console.log(b);
+
+c = a.filter((v)=>v%2);
+console.log(c);
+
+d = a.reduce((acc , val)=>acc+val,0);
+console.log(d);
+
