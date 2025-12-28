@@ -1,0 +1,74 @@
+nav {
+  display: flex;
+  gap: 5px;
+  text-align: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  padding : 10px;
+}
+nav a{
+  text-decoration: none;
+  color:white;
+  border:1px solid black;
+  border-radius: 5px;
+  background-color: rgba(24, 26, 17, 0.639);
+  padding: 3px;
+}
+
+nav a:hover{
+  background-color: rgba(0, 12, 17, 0.139);
+}
+.home {
+  background: linear-gradient(rgb(15, 16, 10), rgba(27, 28, 27, 0));
+
+  display: flex;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.products {
+  background: linear-gradient(rgb(64, 66, 56), rgb(203, 175, 12));
+
+  display: flex;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.service {
+  background: linear-gradient(rgba(55, 92, 146, 0.511), rgba(102, 103, 102, 0));
+
+  display: flex;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.clients {
+  background: linear-gradient(rgb(147, 110, 164), rgba(27, 28, 27, 0));
+
+  display: flex;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio {
+  background: linear-gradient(rgb(68, 114, 120), rgba(6, 147, 124, 0.466));
+  display: flex;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
