@@ -1,24 +1,27 @@
 import { useState } from 'react';
 import './App.css';
 import News from './components/News';
-
 // import Counter from './components/Counter';
 // import Login from './components/Login';
 // import Timer from './components/Timer';
-// import ToggleTheme from './components/ToggleTheme';
+ import ToggleTheme from './components/ToggleTheme';
 
 function App() {
   const [category , setCategory ] = useState ("");
   return (
     <div className="App"  style={{textAlign:"Center"} }>
-    {/* <Counter/>
-    <Login/> */}
-    {/* <Timer/> */}
+      
+    <div>
     <h3>News application</h3>
-    <button onClick={()=>setCategory("general")}>General</button>
-    <button onClick={()=>setCategory("Technology")}>Technology</button>
-    <button onClick={()=>setCategory("sports")}>Sports</button>
+    <button onClick={()=>setCategory("general")} style={{margin:"3px"}}>General</button>
+    <button onClick={()=>setCategory("Technology")} style={{margin:"3px"}}>Technology</button>
+    <button onClick={()=>setCategory("sports")} style={{margin:"3px"}}>Sports</button>
+    <button onClick={()=>setCategory("business")} style={{margin:"3px"}}>Business</button>
+    <button onClick={()=>setCategory("health")} style={{margin:"3px"}}>Health</button>
     <News category={category}/>
+   
+    
+    </div>
     </div>
   );
 }
