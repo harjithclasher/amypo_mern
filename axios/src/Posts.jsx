@@ -5,15 +5,23 @@ import Button from "react-bootstrap/Button";
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 const Posts = () => {
+  // -------------------- STATE --------------------
   const [posts, setPosts] = useState([]);
-
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+
   const [editId, setEditId] = useState(null);
+  const [editData, setEditData] = useState({
+    title: "",
+    body: "",
+  });
+
+  // -------------------- READ --------------------
   useEffect(() => {
     axios.get(API_URL).then((res) => setPosts(res.data));
   }, []);
 
+  // -------------------- CREATE --------------------
   const addPost = () => {
     if (!title || !body) {
       alert("Fields should not be empty");
@@ -28,35 +36,67 @@ const Posts = () => {
       })
       .then((res) => {
         setPosts([...posts, res.data]);
-        setBody("");
         setTitle("");
+        setBody("");
       });
   };
 
+  // -------------------- DELETE --------------------
   const deletePost = (id) => {
     axios
       .delete(`${API_URL}/${id}`)
       .then(() => setPosts(posts.filter((p) => p.id !== id)));
   };
 
+  // -------------------- START EDIT --------------------
   const editStart = (post) => {
     setEditId(post.id);
-    setBody(post.body);
-    setTitle(post.title);
+    setEditData({
+      title: post.title,
+      body: post.body,
+    });
   };
-  // const editPost = (id)=>
-  // {
-  //     return()
-  // }
+
+  // -------------------- UPDATE --------------------
+  const updateEdit = () => {
+    if (!editData.title || !editData.body) {
+      alert("Fields should not be empty");
+      return;
+    }
+
+    axios
+      .put(`${API_URL}/${editId}`, {
+        title: editData.title,
+        body: editData.body,
+        userId: 1,
+      })
+      .then((res) => {
+        setPosts(
+          posts.map((p) => (p.id === editId ? res.data : p))
+        );
+        setEditId(null);
+        setEditData({ title: "", body: "" });
+      });
+  };
+
+  // -------------------- CANCEL EDIT --------------------
+  const cancelEdit = () => {
+    setEditId(null);
+    setEditData({ title: "", body: "" });
+  };
+
+  // -------------------- UI --------------------
   return (
-    <div>
-      <h3>Post List</h3>
-      <table border="2">
+    <div className="container mt-4">
+      <h3>Post List (Inline Edit CRUD)</h3>
+
+      <table className="table table-bordered">
         <thead>
           <tr>
-            <td>ID</td>
-            <td>Title</td>
-            <td>Body</td>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -64,58 +104,99 @@ const Posts = () => {
           {posts.map((p) => (
             <tr key={p.id}>
               <td>{p.id}</td>
-              <td>{p.title}</td>
-              <td>{p.body}</td>
+
+              {/* TITLE CELL */}
               <td>
-                {editId==null?
-                (<>                  <Button
-                    onClick={() => editStart(p)}
-                    className="btn btn-primary"
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    onClick={() => deletePost(p.id)}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </Button></>)
-                }
-                :               (<>
-                <Button>
-                    Update
-                  </Button>
-                  <Button>
-                    Cancel
-                  </Button></>)
+                {editId === p.id ? (
+                  <input
+                    className="form-control"
+                    value={editData.title}
+                    onChange={(e) =>
+                      setEditData({
+                        ...editData,
+                        title: e.target.value,
+                      })
+                    }
+                  />
+                ) : (
+                  p.title
+                )}
+              </td>
+
+              {/* BODY CELL */}
+              <td>
+                {editId === p.id ? (
+                  <input
+                    className="form-control"
+                    value={editData.body}
+                    onChange={(e) =>
+                      setEditData({
+                        ...editData,
+                        body: e.target.value,
+                      })
+                    }
+                  />
+                ) : (
+                  p.body
+                )}
+              </td>
+
+              {/* ACTIONS */}
+              <td>
+                {editId === p.id ? (
+                  <>
+                    <Button
+                      className="btn btn-success me-2"
+                      onClick={updateEdit}
+                    >
+                      Update
+                    </Button>
+                    <Button
+                      className="btn btn-secondary"
+                      onClick={cancelEdit}
+                    >
+                      Cancel
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      className="btn btn-primary me-2"
+                      onClick={() => editStart(p)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      className="btn btn-danger"
+                      onClick={() => deletePost(p.id)}
+                    >
+                      Delete
+                    </Button>
+                  </>
+                )}
               </td>
             </tr>
           ))}
         </tbody>
 
+        {/* ADD FORM */}
         <tfoot>
           <tr>
             <td></td>
-
             <td>
               <input
                 className="form-control"
                 placeholder="Enter title"
                 value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </td>
-
             <td>
               <input
                 className="form-control"
                 placeholder="Enter body"
                 value={body}
-                onChange={(e) => {
-                  setBody(e.target.value);
-                }}
+                onChange={(e) => setBody(e.target.value)}
               />
             </td>
             <td>
